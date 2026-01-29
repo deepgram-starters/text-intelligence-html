@@ -28,6 +28,12 @@
 const API_ENDPOINT = '/text-intelligence/analyze';
 
 /**
+ * API endpoint for app metadata
+ * Returns app title, description, author, repository, etc.
+ */
+const METADATA_ENDPOINT = '/api/metadata';
+
+/**
  * LocalStorage key for history persistence
  */
 const HISTORY_KEY = 'deepgram_text_intelligence_history';
@@ -76,6 +82,54 @@ let inputMode = 'text';
 let activeAnalysisId = null;
 
 // ============================================================================
+// METADATA FETCHING
+// ============================================================================
+
+/**
+ * Fetches app metadata from the backend and updates the UI
+ * Updates page title, description, header title, and repository link
+ */
+async function fetchMetadata() {
+  try {
+    const response = await fetch(METADATA_ENDPOINT);
+    if (!response.ok) {
+      console.warn('Failed to fetch metadata, using defaults');
+      return;
+    }
+
+    const metadata = await response.json();
+
+    // Update page title
+    const pageTitle = document.getElementById('pageTitle');
+    if (metadata.title && pageTitle) {
+      pageTitle.textContent = metadata.title;
+    }
+
+    // Update page description
+    const pageDescription = document.getElementById('pageDescription');
+    if (metadata.description && pageDescription) {
+      pageDescription.setAttribute('content', metadata.description);
+    }
+
+    // Update header title
+    const headerTitle = document.getElementById('headerTitle');
+    if (metadata.title && headerTitle) {
+      headerTitle.textContent = metadata.title;
+    }
+
+    // Update repository link
+    const repoLink = document.getElementById('repoLink');
+    if (metadata.repository && repoLink) {
+      repoLink.href = metadata.repository;
+    }
+
+    console.log('Metadata loaded:', metadata);
+  } catch (error) {
+    console.warn('Error loading metadata, using defaults:', error);
+  }
+}
+
+// ============================================================================
 // INITIALIZATION
 // ============================================================================
 
@@ -113,6 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load and render history
   renderHistory();
+
+  // Fetch and display app metadata
+  fetchMetadata();
 });
 
 // ============================================================================
