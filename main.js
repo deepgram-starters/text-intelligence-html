@@ -277,8 +277,8 @@ async function handleAnalyze() {
     // Display results
     displayResults(data.results, features);
 
-    // Display metadata
-    displayMetadata(requestId, inputMode, inputValue);
+    // Display metadata (use API request_id if available)
+    displayMetadata(data.metadata?.request_id, inputMode, inputValue);
 
     activeAnalysisId = requestId;
 
@@ -533,11 +533,11 @@ function createIntentsSection(intentsData) {
 /**
  * Display metadata
  */
-function displayMetadata(requestId, inputMode, input) {
+function displayMetadata(apiRequestId, inputMode, input) {
   metadataGrid.innerHTML = '';
 
   const items = [
-    { label: 'Request ID', value: requestId },
+    ...(apiRequestId ? [{ label: 'Request ID', value: apiRequestId }] : []),
     { label: 'Input Mode', value: inputMode === 'text' ? 'Text' : 'URL' },
     { label: 'Input Preview', value: input.substring(0, 50) + (input.length > 50 ? '...' : '') },
     { label: 'Timestamp', value: new Date().toLocaleString() },
