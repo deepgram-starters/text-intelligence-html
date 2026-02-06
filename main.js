@@ -250,7 +250,6 @@ async function handleAnalyze() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Request-Id': requestId,
       },
       body: JSON.stringify(body),
     });
