@@ -25,7 +25,7 @@
 /**
  * API endpoint for text intelligence requests
  */
-const API_ENDPOINT = '/text-intelligence/analyze';
+const API_ENDPOINT = '/api/text-intelligence';
 
 /**
  * API endpoint for app metadata

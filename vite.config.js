@@ -3,13 +3,13 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   root: '.',
   server: {
-    port: parseInt(process.env.VITE_PORT || '8081'),
+    port: 8080,
     strictPort: true,
     open: false,
     host: true,
     proxy: {
-      '/api/metadata': {
-        target: 'http://localhost:8080',
+      '/api': {
+        target: process.env.VITE_BACKEND_URL || 'http://localhost:8081',
         changeOrigin: true
       }
     }
@@ -31,4 +31,3 @@ export default defineConfig({
     }
   }
 });
-
