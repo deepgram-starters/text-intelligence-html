@@ -23,34 +23,20 @@
 // ============================================================================
 
 /**
- * Computes the base path from the current page URL.
- * Ensures a trailing slash so relative API paths resolve correctly
- * whether the app is deployed at root (/) or under a subpath.
- *
- * @returns {string} Base path with trailing slash
- */
-function getBasePath() {
-  let path = window.location.pathname;
-  if (!path.endsWith('/')) path += '/';
-  return path;
-}
-
-/**
  * API endpoint for text intelligence requests
- * Dynamically resolved from base path to support subpath deployments
  */
-const API_ENDPOINT = getBasePath() + 'api/text-intelligence';
+const API_ENDPOINT = 'api/text-intelligence';
 
 /**
  * API endpoint for app metadata
  * Returns app title, description, author, repository, etc.
  */
-const METADATA_ENDPOINT = getBasePath() + 'api/metadata';
+const METADATA_ENDPOINT = 'api/metadata';
 
 /**
  * API endpoint for session token
  */
-const SESSION_ENDPOINT = getBasePath() + 'api/session';
+const SESSION_ENDPOINT = 'api/session';
 
 /**
  * Cached session token (JWT)
