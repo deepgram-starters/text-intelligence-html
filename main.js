@@ -44,25 +44,13 @@ const SESSION_ENDPOINT = 'api/session';
 let sessionToken = null;
 
 /**
- * Reads the session nonce injected by the backend into a meta tag.
- * Returns null in dev mode (no nonce injected).
- * @returns {string|null}
- */
-function getPageNonce() {
-  const meta = document.querySelector('meta[name="session-nonce"]');
-  return meta ? meta.content : null;
-}
-
-/**
- * Fetches a session token from the backend. Uses the page nonce if available.
+ * Fetches a session token from the backend.
  * Caches the token for subsequent requests.
  * @returns {Promise<string>} JWT token
  */
 async function getSessionToken() {
   if (sessionToken) return sessionToken;
-  const nonce = getPageNonce();
-  const headers = nonce ? { "X-Session-Nonce": nonce } : {};
-  const response = await fetch(SESSION_ENDPOINT, { headers });
+  const response = await fetch(SESSION_ENDPOINT);
   if (!response.ok) throw new Error(`Session failed: ${response.status}`);
   const data = await response.json();
   sessionToken = data.token;
