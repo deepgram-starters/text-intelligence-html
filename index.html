@@ -58,7 +58,7 @@
        =================================================================== */
 
     /* Left sidebar - Input controls */
-    .dg-column--sidebar-left {
+    .dg-columns__column--left {
       border-right: 1px solid rgba(255, 255, 255, 0.1);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       background: var(--dg-almost-black, #050506);
@@ -66,13 +66,13 @@
     }
 
     /* Main content area - Results display */
-    .dg-column--main {
+    .dg-columns__column--center {
       background: var(--dg-background, #0b0b0c);
       overflow-y: auto;
     }
 
     /* Right sidebar - History panel */
-    .dg-column--sidebar-right {
+    .dg-columns__column--right {
       border-left: 1px solid rgba(255, 255, 255, 0.1);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       background: var(--dg-almost-black, #050506);
@@ -80,14 +80,14 @@
     }
 
     /* Responsive adjustments for column borders */
-    @media (min-width: 768px) {
-      .dg-column--sidebar-right {
+    @media (min-width: 1280px) {
+      .dg-columns__column--right {
         border-top: none;
       }
     }
 
     @media (min-width: 1024px) {
-      .dg-column--sidebar-left {
+      .dg-columns__column--left {
         border-bottom: none;
       }
     }
@@ -379,7 +379,7 @@
            LEFT SIDEBAR - Input controls and settings
            ================================================================== -->
 
-      <aside class="dg-column dg-column--sidebar-left dg-column--xl">
+      <aside class="dg-columns__column dg-columns__column--left dg-columns__column--xl">
 
         <!-- INPUT MODE TOGGLE -->
         <div class="controls-section">
@@ -479,7 +479,7 @@
            MAIN CONTENT AREA - Results display
            ================================================================== -->
 
-      <main class="dg-column dg-column--main" id="mainContent">
+      <main class="dg-columns__column dg-columns__column--center" id="mainContent">
         <div class="empty-state">
           <div class="empty-state-icon dg-text-primary"><i class="fa-solid fa-brain"></i></div>
           <h2 class="dg-section-heading">Analyze Text with AI Intelligence</h2>
@@ -493,7 +493,7 @@
            RIGHT SIDEBAR - History panel
            ================================================================== -->
 
-      <aside class="dg-column dg-column--sidebar-right dg-column--lg" id="historySidebar">
+      <aside class="dg-columns__column dg-columns__column--right dg-columns__column--lg" id="historySidebar">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
           <h3 class="dg-form-label" id="historyTitle" style="margin: 0;">History (0)</h3>
           <button id="clearHistoryBtn" class="dg-btn dg-btn--ghost dg-btn--sm" style="display: none;">
@@ -511,4 +511,3 @@
 </body>
 
 </html>
-
